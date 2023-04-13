@@ -6,7 +6,7 @@ The traffic that will be simulated will contain one or more vehicles.
 
 The vehicles shall have a provided speed and will be driving in a single way road. 
 
-The end users that the system is aimed for is for any client that want to simulate a road. 
+The end users that the system is aimed for is for any client that want to simulate a road traffic. 
 
 
 ## User requirements
