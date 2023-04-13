@@ -11,7 +11,7 @@ The end users that the system is aimed for is for any client that want to simula
 
 ## User requirements
 
-**\1.** The traffic simulation will generate a visualisation of the traffic (vehicles) on the road and also output the data/statistics of the said traffic. An interface will also be provided that will give the user the possibility of providing custom parameters for number of vehicles in traffic, max speed of vehicles, delay probability, length of road.
+**1.** The traffic simulation will generate a visualisation of the traffic (vehicles) on the road and also output the data/statistics of the said traffic. An interface will also be provided that will give the user the possibility of providing custom parameters for number of vehicles in traffic, max speed of vehicles, delay probability, length of road.
 
 
 
