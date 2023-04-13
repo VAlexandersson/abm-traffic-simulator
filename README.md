@@ -20,10 +20,11 @@ The end users that the system is aimed for is for any client that want to simula
 **1.1.** The simulation shall be using the agent-based computional model.
 
 **1.2.** An agent shall have following rules:
-			1. Acceleration: $v_{i} \Leftarrow min(v_{i},v_{max})$
-			2. Deceleration to avoid accidents: $v_{i} \Leftarrow min(v_i,gap)$
-			3. Randomisation: with certain probability $p$ do $v_{i}\Leftarrow max(v_{i}-1,0)$ 
-			4. Movement: $x_{i}\Leftarrow x_{i}+v_{i}$ 
+
+	1. Acceleration: $v_{i} \Leftarrow min(v_{i},v_{max})$
+	2. Deceleration to avoid accidents: $v_{i} \Leftarrow min(v_i,gap)$
+	3. Randomisation: with certain probability $p$ do $v_{i}\Leftarrow max(v_{i}-1,0)$ 
+	4. Movement: $x_{i}\Leftarrow x_{i}+v_{i}$ 
 			
 **1.3.** An agent is a vehicle.
 
