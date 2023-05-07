@@ -1,5 +1,8 @@
 ## Introduction
 
+
+### Architectural pattern
+
 ```mermaid
 graph LR
 
