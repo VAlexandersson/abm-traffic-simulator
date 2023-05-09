@@ -1,5 +1,3 @@
-package com.snook;
-
 import model.*;
 
 import java.io.IOException;
