@@ -6,7 +6,7 @@
 
 #### MVP
 ```mermaid
-graph TD
+graph LR
 M(Model)
 V(View)
 P(Presenter)
