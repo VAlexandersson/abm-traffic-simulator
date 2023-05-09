@@ -3,6 +3,23 @@
 
 ### Architectural pattern
 
+
+#### MVP
+```mermaid
+graph TD
+M(Model)
+V(View)
+P(Presenter)
+
+V --User input--> P
+P --Updates--> V
+
+P --Updates--> M
+M --State changes-->P
+
+```
+
+#### MVVM
 ```mermaid
 graph LR
 
