@@ -1,8 +1,11 @@
+
+import com.snook.model.Road;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static com.snook.view.TestView.printSimulation;
 
 
 /**
@@ -11,17 +14,19 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-
-
-        var label = new Label("Hello");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stage) throws IOException {
+        Simulation simulation = new Simulation(new Road(10, 4));
+        simulation.addTruckAgent(2, 4, 0);
+        simulation.addCarAgent(1, 0, 1);
+        simulation.addObstacle(6, 1);
+        
+        while (true) {
+            printSimulation(simulation);
+            System.in.read();
+            simulation.step();
+        }
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) { launch(); }
 
 }
