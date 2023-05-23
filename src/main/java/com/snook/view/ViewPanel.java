@@ -31,7 +31,6 @@ public class ViewPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //System.out.println("Painting");
         paintBoard(g);
         paintObjects(g);
     }
@@ -70,22 +69,8 @@ public class ViewPanel extends JPanel {
     }
 
     public void updateObjects(ArrayList<SimulationObject> objects) {
-        //System.out.println("Updating objects");
         this.simulationObjects = objects;
         repaint();
-        //printObjects();
-//        if (!EventQueue.isDispatchThread()) {
-//            EventQueue.invokeLater(() -> {
-//                try {
-//                    update(object);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
-//        } else {
-//            //this.repaint(new Rectangle(object.getX() * scale, object.getY() * scale, object.getWidth() * scale, object.getLength() * scale));
-//            //ta.append(object.getType()+"{"+object.getName()+"} ("+object.getX()+","+object.getY()+") W:"+object.getWidth()+" L:"+object.getLength()+"\n");
-//        }
     }
 
     public void printObjects(){
