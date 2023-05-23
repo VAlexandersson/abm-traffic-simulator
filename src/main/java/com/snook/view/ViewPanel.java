@@ -7,7 +7,6 @@ import com.snook.model.objects.SimulationObject;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 
 public class ViewPanel extends JPanel {
@@ -41,8 +40,8 @@ public class ViewPanel extends JPanel {
         for (SimulationObject simulationObject : simulationObjects) {
             int xPos = simulationObject.getX();
             int yPos = simulationObject.getY();
-            int width = simulationObject.getWidth();// * scale-4;
-            int height = simulationObject.getLength();// * scale-4;
+            int width = simulationObject.getWidth();
+            int height = simulationObject.getLength();
             if(simulationObject.getType() == SimulationObject.Type.AGENT)
                 g.setColor(Color.BLUE);
             else

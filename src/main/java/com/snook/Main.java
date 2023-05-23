@@ -5,18 +5,9 @@ import com.snook.model.board.Board;
 import com.snook.model.objects.SimulationObject;
 import com.snook.view.ViewPanel;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.text.NumberFormat;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -30,15 +21,15 @@ public class Main {
 
         //simulator.addAgent(4,1100);
         simulator.addAgent(4, 450);
-
         simulator.addAgent(5, 500);
-        simulator.addObstacle(5, 200);
-
-        simulator.addObstacle(5, 700);
-
-
-        simulator.addObstacle(4, 1000);
         simulator.addAgent(5, 1000);
+
+        simulator.addObstacle(4, 100);
+        simulator.addObstacle(5, 400);
+        simulator.addObstacle(4, 700);
+
+
+
 
 
         //simulator.addRandomAgent();

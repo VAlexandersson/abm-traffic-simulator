@@ -9,7 +9,7 @@ import java.util.concurrent.BrokenBarrierException;
 
 import static com.snook.constants.Constants.ticksPerSecond;
 
-public class SimulationAgent extends SimulationObject implements Agent, Runnable{
+public class SimulationAgent extends SimulationObject implements Agent, Runnable, Observer{
 
 
     private final Observer observer;
@@ -122,5 +122,7 @@ public class SimulationAgent extends SimulationObject implements Agent, Runnable
         return null;
     }
 
+    @Override
+    public void agentChanged(SimulationObject agent) throws InterruptedException, BrokenBarrierException {    }
 }
 
