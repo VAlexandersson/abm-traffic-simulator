@@ -39,7 +39,6 @@ public class Helper {
             currentRow += agent.getLength()*3;
         }
         else if(changeTo.equals("straight")) { lane = lane; }
-        else { System.out.println("ERROR: getDistanceFromClosestObject"); }
 
         SimulationObject object = getRowClosestObject(lane, currentRow, agent.getBoard(), direction);
         int otherRow = object.getY();
@@ -60,7 +59,6 @@ public class Helper {
                 return (roadLength - currentRow) + otherRow;
             }
         }
-        System.out.println("ERROR: getDistanceFromClosestObject");
         return -1;
     }
 
@@ -90,26 +88,17 @@ public class Helper {
     }
 
     public static int calculateRowDifference(int currentRow, int otherRow, int boardHeight, Direction direction) {
-        //System.out.println("CURRENT ROW {" + currentRow + "} OTHER ROW {" + otherRow + "}" + " BOARD HEIGHT {" + boardHeight + "}" + " DIRECTION {" + direction + "}");
         switch (direction){
             case NORTH -> {
-                StringBuilder st = new StringBuilder();
-                st.append("\nCalcRowDif\n------\ncurrentRow " + currentRow + ">= otherRow " + otherRow + "\t?\t");
                 if(currentRow >= otherRow) {
-                   //st.append("[TRUE]\t(otherow - currentRow)\n" + currentRow + " - " + otherRow + " = " + (currentRow-otherRow));
-                  //  System.out.println(st.toString());
                     return currentRow-otherRow;
                 }
-               // st.append("[FALSE]\n\t(boardHeight - currentRow) + otherRow\n\t(" + boardHeight + " - " + currentRow + ")" + " + " + otherRow + " = " + ((boardHeight - currentRow) + otherRow));
-               // System.out.println(st.toString());
                 return (boardHeight - otherRow) + currentRow;
-                //return (currentRow <= otherRow) ? otherRow - currentRow : (boardHeight - currentRow) + otherRow;
             }
             case SOUTH -> {
                 if(currentRow <= otherRow) {
                     return currentRow-otherRow;
                 }
-                    //System.out.println("SOOOOUURTHH currentRow " + currentRow + ">= otherRow " + otherRow);
                 return (currentRow >= otherRow) ? currentRow - otherRow : currentRow + (boardHeight - otherRow);
             }
         }
@@ -119,6 +108,7 @@ public class Helper {
     public static int getRelativeSpeed(int velocity, int otherVelocity) {
         return velocity - otherVelocity;
     }
+
     public static SimulationObject getRowClosestObject(int x, int y, Board board, Direction direction) {
         SimulationObject closestObject = null;
         int minRowDifference = 9000;
@@ -135,24 +125,6 @@ public class Helper {
         return closestObject;
     }
 
-    public static SimulationObject getRowClosestObjectV2(SimulationAgent agent, String lane) {
-        SimulationObject closestObject = null;
-        int minRowDifference = 9000;
-        int currObjDiff;
-
-        for (SimulationObject object : agent.getBoard().getSimulationObjects()) {
-            if(agent.getName() == object.getName()) continue;
-            if(object.getX() != agent.getX()) continue;
-            currObjDiff = calculateRowDifference(agent.getY(), object.getY(), agent.getBoard().getPixelHeight(), agent.getDirection());
-            if(currObjDiff < minRowDifference) {
-                closestObject = object;
-                minRowDifference = currObjDiff;
-            }
-        }
-        return closestObject;
-    }
-
-
     public static SimulationObject getRowClosestObjectV2(SimulationAgent agent) {
         SimulationObject closestObject = null;
         int minRowDifference = 9000;
@@ -161,7 +133,7 @@ public class Helper {
         for (SimulationObject object : agent.getBoard().getSimulationObjects()) {
             if(agent.getName() == object.getName()) continue;
             if(object.getX() != agent.getX()) continue;
-            currObjDiff = calculateRelativeDistance(agent, object);//calculateRowDifference(agent.getY(), object.getY(), agent.getBoard().getPixelHeight(), agent.getDirection());
+            currObjDiff = calculateRelativeDistance(agent, object);
             if(currObjDiff < minRowDifference) {
                 closestObject = object;
                 minRowDifference = currObjDiff;

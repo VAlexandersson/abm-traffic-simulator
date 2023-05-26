@@ -4,32 +4,31 @@ import com.snook.model.board.Board;
 import com.snook.model.objects.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Simulation  {
+public class SimulationEngine {
+    private final ExecutorService executor;
     private final ArrayList<SimulationObject> objects;
+    private final ArrayList<Runnable> agents;
     private final Board board;
 
 
-    public Simulation(ArrayList<SimulationObject> objects, Board board) {
+    public SimulationEngine(ArrayList<SimulationObject> objects, Board board) {
         this.objects = objects;
         this.board = board;
+        agents = new ArrayList<>();
+        executor = Executors.newCachedThreadPool();
     }
 
     public void addObject(SimulationObject object) {
         board.addSimulationObject(object);
         objects.add(object);
-    }
-    public List<SimulationAgent> getAgents() {
-        ArrayList<SimulationAgent> agents = new ArrayList<>();
-        for (SimulationObject object : objects) {
-            if(object instanceof SimulationAgent) {
-                agents.add((SimulationAgent) object);
-            }
+        if(object instanceof SimulationAgent) {
+            agents.add((Runnable) object);
         }
-        return agents;
     }
+
     public ArrayList<SimulationObject> getObjects() { return objects; }
     public void removeObject(SimulationObject object) {
         board.getSimulationObjects().remove(object);
@@ -37,5 +36,14 @@ public class Simulation  {
     }
     public Board getBoard() { return board; }
 
+    public void stepAgents() {
+        for (Runnable agent : agents) {
+            executor.submit(agent);
+        }
+    }
+
+    public int getNumberOfAgents() {
+        return agents.size();
+    }
 
 }

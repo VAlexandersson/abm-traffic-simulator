@@ -33,9 +33,7 @@ public class Selector extends Rule {
 
     @Override
     public void start() {
-        // start the current sequence
         super.start();
-        // reset the current queue and copy the rules from setup
         ruleQueue.clear();
         ruleQueue.addAll(rules);
         currentRule = ruleQueue.poll();
@@ -46,17 +44,13 @@ public class Selector extends Rule {
     public void act(SimulationAgent agent, Board board) {
 
         currentRule.act(agent, board);
-        // if is still running, then carry on
         if (currentRule.isRunning()) { return; }
 
-        // check if the rule is successful and finish the sequence
         if (currentRule.isSuccess()) {
             succeed();
             return;
         }
 
-        // We need to progress the sequence. If there are no more rules
-        // then the state is the last rule's state. (Success for OR was already handled)
         if (ruleQueue.peek() == null) {
             this.state = currentRule.getState();
         } else {

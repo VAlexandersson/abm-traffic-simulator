@@ -1,15 +1,13 @@
 package com.snook.model.objects;
 
 import com.snook.model.objects.behaviour.Rule;
-import com.snook.model.objects.behaviour.composites.Repeater;
+import com.snook.model.objects.behaviour.decorators.Repeater;
 import com.snook.model.objects.core.Direction;
 import com.snook.model.objects.core.ObjectState;
 
 import java.util.concurrent.BrokenBarrierException;
 
-import static com.snook.constants.Constants.ticksPerSecond;
-
-public class SimulationAgent extends SimulationObject implements Agent, Runnable, Observer{
+public class SimulationAgent extends SimulationObject implements Agent, Runnable {
 
 
     private final Observer observer;
@@ -33,7 +31,6 @@ public class SimulationAgent extends SimulationObject implements Agent, Runnable
         if(rule == null) { return; }
         if (rule.getState() == null) { rule.start(); }
         do {
-//            System.out.println("rule: " + rule);
             rule.act(this, board);
         } while(getRepeater().getRule().getState() != Rule.RuleState.Success);
     }
@@ -66,8 +63,6 @@ public class SimulationAgent extends SimulationObject implements Agent, Runnable
     public double getReactionTime() { return reactionTime; }
 
     public void updateVelocity() {
-        System.out.println("updateVelocity");
-        System.out.println("velocity: " + velocity + ", acceleration: " + acceleration + ", maxVelocity: " + maxVelocity + ", status: " + status);
         if(velocity + acceleration > 0) {
             if(velocity + acceleration > maxVelocity) {
                 velocity = maxVelocity;
@@ -115,14 +110,11 @@ public class SimulationAgent extends SimulationObject implements Agent, Runnable
         else { status = ObjectState.BUSY; }
     }
 
-    public Repeater getRepeater() {
+    private Repeater getRepeater() {
         if (rule instanceof Repeater) {
             return (Repeater) rule;
         }
         return null;
     }
-
-    @Override
-    public void agentChanged(SimulationObject agent) throws InterruptedException, BrokenBarrierException {    }
 }
 

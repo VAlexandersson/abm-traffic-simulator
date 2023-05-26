@@ -9,7 +9,7 @@ public class Position {
     public Position(int x, int y, int deltaX, int deltaY) {
         this.x = x;
         this.y = y;
-        this.deltaX = deltaX;
+        this.deltaX = deltaX; // to get previous location, not currently used
         this.deltaY = deltaY;
     }
 
@@ -38,10 +38,4 @@ public class Position {
         deltaY = y - this.y;
         this.y = y;
     }
-
-    public void moveNorth(int velocity) { y -= velocity; }
-    public void moveSouth(int velocity) { y += velocity; }
-    public void moveWest(int velocity) { x -= velocity; }
-    public void moveEast(int velocity) { x += velocity; }
-
 }

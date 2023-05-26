@@ -25,20 +25,15 @@ public class ObjectInFront extends Rule {
 
         if( closestObject == null || closestObject == agent || closestObject.getVelocity() > agent.getVelocity()) {
             fail();
-            System.out.println(" - " + this.state.toString().toUpperCase() + "\tOBJECTINFRONT\t FASTER");
             return;
         }
-        System.out.print("Inside ObjectInFront " + agent.getName()  );
-
-        int closestObjectDistance = Helper.calculateRelativeDistance(agent, closestObject);//Helper.calculateRowDifference(agent.getY(), closestObject.getY(), board.getPixelHeight(), Direction.NORTH);
-
+        int closestObjectDistance = Helper.calculateRelativeDistance(agent, closestObject);
 
         if (closestObjectDistance >= 150) {
             fail();
         } else {
             succeed();
         }
-        System.out.println(" - " + this.state.toString().toUpperCase() + "\tOBJECTINFRONT ");
 
     }
 }

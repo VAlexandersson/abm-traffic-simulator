@@ -40,14 +40,6 @@ public class RuleFactory {
         return new ChangeLane();
     }
 
-    public static Rule overTakeOrFollowSelector() {
-        return selector(
-                otherLaneFree()
-                // overTakeSequence(),
-                // followSequence()
-        );
-    }
-
     private static Rule overTakeSequence() {
         return sequence(
                 otherLaneFree(),
@@ -70,40 +62,23 @@ public class RuleFactory {
         );
     }
 
-
     public static Rule brain() {
         System.out.println("Brain");
         return repeater(
                         selector(
                                 sequence(
-                                objectInFront(),
+                                    objectInFront(),
                                         selector(
                                                 overTakeSequence(),
                                                 sequence(
                                                         shouldBrake(),
-                                                        goNorth()
+                                                        goDirection(Direction.NORTH)
                                                 )
                                         )
                                 ),
                                 speedUpSeq(),
                                 goDirection(Direction.NORTH)
                         )
-        );
-    }
-
-    public static Rule brainV2() {
-        System.out.println("Brain");
-        return repeater(selector(
-                        slowDownSeq(),
-                        speedUpSeq(),
-                        goDirection(Direction.NORTH)
-
-//                        sequence(
-//                                objectInFront(),
-//                                shouldBrake(),
-//                                goNorth()
-//                        ),
-                )
         );
     }
 

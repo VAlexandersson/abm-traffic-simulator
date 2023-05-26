@@ -1,9 +1,10 @@
-package com.snook.model.objects.behaviour.composites;
+package com.snook.model.objects.behaviour.decorators;
 
 
 import com.snook.model.objects.behaviour.Rule;
 import com.snook.model.board.Board;
 import com.snook.model.objects.SimulationAgent;
+import com.snook.model.objects.behaviour.composites.Selector;
 
 public class Repeater extends Rule {
 

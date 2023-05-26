@@ -11,18 +11,11 @@ import java.util.ArrayList;
 
 public class ViewPanel extends JPanel {
 
-    int scale, width, height;
     ArrayList<SimulationObject> simulationObjects;
     Board roadBoard;
-    Board simulatorBoard;
 
-    public ViewPanel(Board board) {
-        roadBoard = board;
-        height = board.getWidth();
-        width = board.getHeight();
-        scale = board.getScale();
+    public ViewPanel() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(width*scale, height*scale));
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
@@ -31,12 +24,19 @@ public class ViewPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //System.out.println("Painting");
         paintBoard(g);
         paintObjects(g);
     }
 
+    public void updateView(ArrayList<SimulationObject> objects, Board board) {
+        roadBoard = board;
+        simulationObjects = objects;
+        repaint();
+    }
+
+
     private void paintObjects(Graphics g) {
+        int scale = roadBoard.getScale();
         for (SimulationObject simulationObject : simulationObjects) {
             int xPos = simulationObject.getX();
             int yPos = simulationObject.getY();
@@ -52,6 +52,9 @@ public class ViewPanel extends JPanel {
 
     }
     public void paintBoard(Graphics g) {
+        int height = roadBoard.getWidth();
+        int width = roadBoard.getHeight();
+        int scale = roadBoard.getScale();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int xPos = x * scale;
@@ -60,7 +63,6 @@ public class ViewPanel extends JPanel {
                 switch (tileState) {
                     case ROAD ->{
                         g.setColor(Color.LIGHT_GRAY);
-                        break;
                     }
                     default -> g.setColor(Color.GRAY);
                 }
@@ -69,38 +71,11 @@ public class ViewPanel extends JPanel {
         }
     }
 
-    public void updateObjects(ArrayList<SimulationObject> objects) {
-        //System.out.println("Updating objects");
-        this.simulationObjects = objects;
-        repaint();
-        //printObjects();
-//        if (!EventQueue.isDispatchThread()) {
-//            EventQueue.invokeLater(() -> {
-//                try {
-//                    update(object);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
-//        } else {
-//            //this.repaint(new Rectangle(object.getX() * scale, object.getY() * scale, object.getWidth() * scale, object.getLength() * scale));
-//            //ta.append(object.getType()+"{"+object.getName()+"} ("+object.getX()+","+object.getY()+") W:"+object.getWidth()+" L:"+object.getLength()+"\n");
-//        }
-    }
-
     public void printObjects(){
         if(simulationObjects != null)
             simulationObjects.forEach(object -> System.out.println(
                     object.getType()+"{"+object.getName()+"} ("+ object.getX()+","+object.getY()+") W:"+object.getWidth()+" L:"+object.getLength()));
     }
 
-    public void updateSimulatorBoard(Board simulatorBoard) {
-        this.simulatorBoard = simulatorBoard;
-    }
-
-
-    public void printToTerminal(ArrayList<SimulationObject> objects) {
-        objects.forEach(object -> System.out.println(object.getType()+"{"+object.getName()+"} ("+object.getX()+","+object.getY()+") W:"+object.getWidth()+" L:"+object.getLength()));
-    }
 
 }

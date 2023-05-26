@@ -18,11 +18,9 @@ public class LaneIsFree extends Rule {
 
     @Override
     public void act(SimulationAgent agent, Board board) {
-        SimulationObject closestObject = Helper.getRowClosestObjectV2(agent);//(agent.getX(), agent.getY()+1, board, agent.getDirection());
+        SimulationObject closestObject = Helper.getRowClosestObjectV2(agent);
         if( closestObject == null || closestObject.getVelocity() > agent.getVelocity()) {
             fail();
-            System.out.println(" - " + this.state.toString().toUpperCase() + "\tOBJECTINFRONT\t FASTER");
-            return;
         }
     }
 }

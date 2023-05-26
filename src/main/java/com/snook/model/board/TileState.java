@@ -6,5 +6,4 @@ public enum TileState {
     AGENT,
     OBJECT,
     INTERSECTION,
-    // Add more tile types as needed
 }

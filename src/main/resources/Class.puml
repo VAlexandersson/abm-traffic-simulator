@@ -37,8 +37,8 @@ class Board {
 
 }
 
-class Simulation {
-    +step()
+class SimulationEngine {
+    +stepAgents()
     +addObject(SimulationObject object)
     +getObjects()
     +getBoard()
@@ -50,20 +50,21 @@ SimulationObject <|-right- SimulationAgent
 
 Runnable <|-up- SimulationAgent
 Agent <|-up- SimulationAgent
-Observer <|-up- SimulationAgent
+Observer *-up- SimulationAgent
+Rule o-up- SimulationAgent
 
 
-Board <-right- SimulationObject
-SimulationObject <-- Board
+Board o-right- SimulationObject
+SimulationObject o-- Board
 
-behaviour <-- Agent
+Rule <-- Agent
 
 Rule <|-- composites
 Rule <|-- leafs
 
-Simulation -up-> SimulationObject
-Simulation -up-> Board
-Simulation --> Agent
+SimulationEngine -up-> SimulationObject
+SimulationEngine -up-> Board
+SimulationEngine --> Agent
 }
 
 
