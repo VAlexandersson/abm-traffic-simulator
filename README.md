@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Introduction
 
 
@@ -33,3 +34,9 @@ B --Polls for<br/>updates--> C
 C --Pushes updates--> B
   
 ```
+=======
+# ABM_TrafficSimulator
+
+Simple multithreaded traffic simulator 
+
+>>>>>>> abm/master

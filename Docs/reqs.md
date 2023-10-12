@@ -1,4 +1,3 @@
-
 ## Introduction
 
 The purpose of the agent-based traffic simulation is to provide an access for clients to easy simulate traffic in a provided piece of road.
